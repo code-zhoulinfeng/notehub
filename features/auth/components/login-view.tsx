@@ -23,14 +23,14 @@ export function LoginView() {
   }, [router]);
 
   return (
-    <div className="min-h-screen grid place-items-center bg-ink-950">
+    <div className="grid min-h-screen place-items-center bg-ink-950">
       <div className="flex flex-col items-center gap-5">
-        <div className="w-14 h-14 rounded-2xl bg-accent grid place-items-center text-white shadow-glow">
-          <LogoIcon className="w-7 h-7" />
+        <div className="grid h-14 w-14 place-items-center rounded-2xl bg-accent text-white shadow-glow">
+          <LogoIcon className="h-7 w-7" />
         </div>
-        <div className="text-zinc-400 text-sm">正在跳转 GitHub 授权…</div>
-        <div className="w-44 h-1 rounded-full bg-white/[0.06] overflow-hidden">
-          <div className="h-full w-1/2 bg-white/20 animate-pulse" />
+        <div className="text-sm text-zinc-400">正在跳转 GitHub 授权…</div>
+        <div className="h-1 w-44 overflow-hidden rounded-full bg-white/[0.06]">
+          <div className="h-full w-1/2 animate-pulse bg-white/20" />
         </div>
       </div>
     </div>

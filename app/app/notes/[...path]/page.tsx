@@ -12,9 +12,7 @@ import { findNote } from "@/lib/mock/data";
  *   /app/notes/a/b/history    → 版本历史
  *   /app/notes/a/b/compare    → 版本对比
  */
-export async function generateMetadata({
-  params,
-}: PageProps<"/app/notes/[...path]">): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps<"/app/notes/[...path]">): Promise<Metadata> {
   const { path } = await params;
   const last = path[path.length - 1];
   if (last === "history") return { title: "版本历史" };
@@ -22,9 +20,7 @@ export async function generateMetadata({
   return { title: "编辑笔记" };
 }
 
-export default async function NoteDetailPage({
-  params,
-}: PageProps<"/app/notes/[...path]">) {
+export default async function NoteDetailPage({ params }: PageProps<"/app/notes/[...path]">) {
   const { path: segments } = await params;
   const last = segments[segments.length - 1];
 

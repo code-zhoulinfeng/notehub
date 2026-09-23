@@ -1,5 +1,5 @@
 import { GlobeIcon, LockIcon } from "@/components/icons";
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
 interface VisibilityBadgeProps {
   isPublic: boolean;
@@ -11,21 +11,13 @@ export function VisibilityBadge({ isPublic, size = "sm" }: VisibilityBadgeProps)
   const pad = size === "sm" ? "px-1.5 py-[3px] text-[10px]" : "px-2.5 py-1 text-[11.5px]";
   const ico = size === "sm" ? "w-2.5 h-2.5" : "w-3 h-3";
   return isPublic ? (
-    <span
-      className={cn(
-        "inline-flex items-center gap-1 rounded bg-white/10 backdrop-blur-md text-white font-medium tracking-wide",
-        pad,
-      )}
-    >
+    <span className={cn("inline-flex items-center gap-1 rounded bg-white/10 font-medium tracking-wide text-white backdrop-blur-md", pad)}>
       <GlobeIcon className={ico} />
       公开
     </span>
   ) : (
     <span
-      className={cn(
-        "inline-flex items-center gap-1 rounded bg-black/55 backdrop-blur-md text-zinc-400 font-medium tracking-wide",
-        pad,
-      )}
+      className={cn("inline-flex items-center gap-1 rounded bg-black/55 font-medium tracking-wide text-zinc-400 backdrop-blur-md", pad)}
     >
       <LockIcon className={ico} />
       私密

@@ -18,7 +18,11 @@ function base(props: IconProps) {
 export function LogoIcon(props: IconProps) {
   return (
     <svg {...base(props)}>
-      <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6.5A2.5 2.5 0 0 1 4 18.5v-13Z" stroke="currentColor" strokeWidth="1.7" />
+      <path
+        d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6.5A2.5 2.5 0 0 1 4 18.5v-13Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+      />
       <path d="M8 8.5h8M8 12h6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
     </svg>
   );

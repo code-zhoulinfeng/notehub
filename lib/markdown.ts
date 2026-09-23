@@ -90,9 +90,7 @@ export function mdToHtml(md: string): string {
   }
   flushPara();
   closeList();
-  return out
-    .join("\n")
-    .replace(/\u0000(\d+)\u0000/g, (_m, i) => stash[Number(i)] ?? "");
+  return out.join("\n").replace(/\u0000(\d+)\u0000/g, (_m, i) => stash[Number(i)] ?? "");
 }
 
 export interface TocItem {

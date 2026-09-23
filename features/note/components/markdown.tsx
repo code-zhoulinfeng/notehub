@@ -10,10 +10,5 @@ interface MarkdownProps {
  * mdToHtml 内部先全部转义再还原受控节点，无原始 HTML 注入风险。
  */
 export function Markdown({ content, className }: MarkdownProps) {
-  return (
-    <div
-      className={className ? `${className} md` : "md"}
-      dangerouslySetInnerHTML={{ __html: mdToHtml(content) }}
-    />
-  );
+  return <div className={className ? `${className} md` : "md"} dangerouslySetInnerHTML={{ __html: mdToHtml(content) }} />;
 }

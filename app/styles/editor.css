@@ -1,0 +1,30 @@
+/* ============================================================================
+   编辑器 / Diff —— Markdown 编辑器与版本对比视图
+   ========================================================================= */
+
+textarea {
+  tab-size: 2;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+.tab-active {
+  background: #fff;
+  color: #08080a;
+}
+
+.diff-line {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 12.5px;
+  line-height: 1.7;
+}
+.diff-add {
+  background: rgba(61, 220, 151, 0.09);
+  border-left: 2px solid rgba(61, 220, 151, 0.55);
+}
+.diff-del {
+  background: rgba(229, 9, 20, 0.1);
+  border-left: 2px solid rgba(229, 9, 20, 0.6);
+}

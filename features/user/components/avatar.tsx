@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
 interface AvatarProps {
   size?: number;
@@ -11,10 +11,7 @@ interface AvatarProps {
 export function Avatar({ size = 32, className, letter = "Z" }: AvatarProps) {
   return (
     <div
-      className={cn(
-        "rounded-full shrink-0 grid place-items-center font-semibold text-white",
-        className,
-      )}
+      className={cn("grid shrink-0 place-items-center rounded-full font-semibold text-white", className)}
       style={{
         width: size,
         height: size,

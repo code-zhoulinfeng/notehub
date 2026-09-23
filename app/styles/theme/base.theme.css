@@ -1,0 +1,35 @@
+/* ============================================================================
+   NoteHub 主题 —— 设计系统 Token（与 docs/design.html 完全一致）
+   ========================================================================= */
+
+@theme {
+  /* ink 灰阶 */
+  --color-ink-950: #08080a;
+  --color-ink-900: #0d0d10;
+  --color-ink-850: #121215;
+  --color-ink-800: #18181c;
+  --color-ink-750: #1e1e23;
+  --color-ink-700: #25252b;
+  --color-ink-600: #2f2f36;
+  --color-ink-500: #3a3a42;
+  --color-ink-400: #4a4a55;
+  --color-ink-300: #6a6a78;
+
+  /* accent（主红） */
+  --color-accent: #e50914;
+  --color-accent-600: #c50812;
+  --color-accent-400: #ff2a35;
+
+  /* 语义色 */
+  --color-mint: #3ddc97;
+  --color-amber: #f5a524;
+
+  /* 字体 */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* 阴影（十六进制含透明度格式） */
+  --shadow-glow: 0 0 60px -15px #e509148c;
+  --shadow-card: 0 24px 70px -24px #000000e6;
+  --shadow-soft: 0 10px 40px -12px #000000b3;
+}

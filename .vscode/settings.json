@@ -1,0 +1,5 @@
+{
+  // Tailwind CSS 4 的 @theme / @utility / @custom-variant / @plugin / @config 等
+  // at-rule 是 Tailwind 编译器语法，VS Code 内置 CSS 校验器不认识，属于误报
+  "css.lint.unknownAtRules": "ignore"
+}

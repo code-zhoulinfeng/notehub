@@ -1,0 +1,34 @@
+/* ============================================================================
+   自定义工具类（@utility）—— 可被 Tailwind 任意变体（hover / group-hover / md:…）修饰
+   ========================================================================= */
+
+/* ---------- 氛围光晕（glow orb）---------- */
+/* 页面级背景光：Landing 左上品牌红 / 右侧紫 */
+@utility glow-accent {
+  background: radial-gradient(circle, #e5091433, transparent 68%);
+}
+@utility glow-violet {
+  background: radial-gradient(circle, #5a28b424, transparent 70%);
+}
+/* 卡片 hover 角落光：Owner 红强调 / Visitor 中性白 */
+@utility glow-accent-hover {
+  background: radial-gradient(circle, #e5091438, transparent 70%);
+}
+@utility glow-white-hover {
+  background: radial-gradient(circle, #ffffff1a, transparent 70%);
+}
+
+/* ---------- 进场动画 ---------- */
+/* 复用 tw-animate-css 的 enter keyframe（globals.css 已引入），通过 --tw-enter-*
+   变量描述起点即可，不再手写 keyframes。等效于在 JSX 里写
+   animate-in fade-in slide-in-from-bottom-4 duration-600 …，此处收拢成语义类 */
+@utility anim-up {
+  --tw-enter-opacity: 0;
+  --tw-enter-translate-y: 1rem; /* 16px */
+  animation: 0.6s cubic-bezier(0.16, 1, 0.3, 1) both enter;
+}
+@utility anim-down {
+  --tw-enter-opacity: 0;
+  --tw-enter-translate-y: -0.75rem; /* 12px */
+  animation: 0.5s cubic-bezier(0.16, 1, 0.3, 1) both enter;
+}

@@ -1,0 +1,79 @@
+/* ============================================================================
+   组件级样式 —— 背景纹理、导航、卡片、侧边栏
+   ========================================================================= */
+
+/* ---------- 网格噪点背景 ---------- */
+.grid-noise {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* ---------- 访客导航 ---------- */
+.nf-nav {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 55%, transparent 100%);
+  transition:
+    background 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.4s;
+  border-bottom: 1px solid transparent;
+}
+.nf-nav.solid {
+  background: #08080a;
+  border-bottom-color: #22222a;
+}
+
+/* ---------- 公开主页卡片 ---------- */
+.note-card {
+  transition:
+    transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.32s ease,
+    border-color 0.32s ease;
+  transform-origin: center center;
+}
+.note-card:hover {
+  transform: scale(1.05);
+  z-index: 30;
+}
+
+.card-desc {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.34s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.26s ease,
+    margin 0.34s ease;
+  margin-top: 0;
+}
+.note-card:hover .card-desc {
+  max-height: 76px;
+  opacity: 1;
+  margin-top: 8px;
+}
+
+.row-arrow {
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.25s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+.row-wrap:hover .row-arrow {
+  opacity: 1;
+  pointer-events: auto;
+}
+.row-arrow:hover {
+  background: rgba(0, 0, 0, 0.85);
+  transform: translateY(-50%) scale(1.08);
+}
+
+/* ---------- 侧边栏 ---------- */
+.side-active {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+.side-active .side-dot {
+  opacity: 1;
+}

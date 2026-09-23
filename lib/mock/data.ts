@@ -259,10 +259,38 @@ server {
 ];
 
 export const COMMITS: Commit[] = [
-  { sha: "a82f91c", msg: "Update routing section", time: "2 小时前", date: "2026-09-12 14:20", add: 12, del: 3 },
-  { sha: "b31a72e", msg: "Add Server Components notes", time: "昨天", date: "2026-09-11 21:04", add: 64, del: 0 },
-  { sha: "8c91f22", msg: "Initial note", time: "8 月 20 日", date: "2026-08-20 09:12", add: 38, del: 0 },
-  { sha: "77d0a1b", msg: "Fix typo in code block", time: "8 月 18 日", date: "2026-08-18 16:45", add: 2, del: 2 },
+  {
+    sha: "a82f91c",
+    msg: "Update routing section",
+    time: "2 小时前",
+    date: "2026-09-12 14:20",
+    add: 12,
+    del: 3,
+  },
+  {
+    sha: "b31a72e",
+    msg: "Add Server Components notes",
+    time: "昨天",
+    date: "2026-09-11 21:04",
+    add: 64,
+    del: 0,
+  },
+  {
+    sha: "8c91f22",
+    msg: "Initial note",
+    time: "8 月 20 日",
+    date: "2026-08-20 09:12",
+    add: 38,
+    del: 0,
+  },
+  {
+    sha: "77d0a1b",
+    msg: "Fix typo in code block",
+    time: "8 月 18 日",
+    date: "2026-08-18 16:45",
+    add: 2,
+    del: 2,
+  },
 ];
 
 /** 公开笔记卡片封面（径向渐变，循环取用） */

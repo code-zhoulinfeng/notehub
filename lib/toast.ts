@@ -1,19 +1,28 @@
 "use client";
 
+import { createElement } from "react";
+import { toast as notify } from "react-toastify";
+import { cn } from "cn";
+
 export type ToastType = "ok" | "warn" | "info";
 
-type Listener = (msg: string, type: ToastType) => void;
+const dotClass: Record<ToastType, string> = {
+  ok: "bg-accent",
+  warn: "bg-amber",
+  info: "bg-white",
+};
 
-const listeners = new Set<Listener>();
-
-/** 全局 toast —— 可在任意（含服务端组件中嵌入的客户端组件）调用 */
+/** 全局 toast —— 可在任意（含服务端组件中嵌入的客户端组件）调用，底层为 react-toastify */
 export function toast(msg: string, type: ToastType = "ok") {
-  listeners.forEach((l) => l(msg, type));
-}
-
-export function subscribeToast(l: Listener): () => void {
-  listeners.add(l);
-  return () => {
-    listeners.delete(l);
-  };
+  notify(
+    createElement(
+      "span",
+      { className: "flex items-center gap-3" },
+      createElement("span", {
+        className: cn("h-1.5 w-1.5 shrink-0 rounded-full", dotClass[type]),
+      }),
+      createElement("span", null, msg),
+    ),
+    { className: "nf-toast" },
+  );
 }

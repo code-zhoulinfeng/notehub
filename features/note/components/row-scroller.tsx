@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import type { ReactNode } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/components/icons";
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 import type { Note } from "@/types/note";
 import { NoteCard } from "@/features/note/components/note-card";
 
@@ -20,15 +20,7 @@ interface RowScrollerProps {
 }
 
 /** 横向滚动分类行 —— 与 design.html 的 VisitorRow 一致（含左右箭头） */
-export function RowScroller({
-  title,
-  notes,
-  accent,
-  count,
-  base,
-  offset = 0,
-  className,
-}: RowScrollerProps) {
+export function RowScroller({ title, notes, accent, count, base, offset = 0, className }: RowScrollerProps) {
   const scrollerRef = useRef<HTMLDivElement>(null);
 
   if (!notes.length) return null;
@@ -40,14 +32,12 @@ export function RowScroller({
 
   return (
     <section className={cn("row-wrap relative mb-9 sm:mb-11", className)}>
-      <div className="flex items-baseline justify-between px-4 sm:px-8 lg:px-12 mb-3.5">
-        <h2 className="text-[17px] sm:text-[19px] font-semibold text-white tracking-tight flex items-center gap-2.5">
-          {accent ? <span className="w-[3px] h-[18px] rounded-full bg-accent" /> : null}
+      <div className="mb-3.5 flex items-baseline justify-between px-4 sm:px-8 lg:px-12">
+        <h2 className="flex items-center gap-2.5 text-[17px] font-semibold tracking-tight text-white sm:text-[19px]">
+          {accent ? <span className="h-[18px] w-[3px] rounded-full bg-accent" /> : null}
           {title}
         </h2>
-        {count ? (
-          <span className="text-[12px] text-ink-400 font-mono">{notes.length} 篇</span>
-        ) : null}
+        {count ? <span className="font-mono text-[12px] text-ink-400">{notes.length} 篇</span> : null}
       </div>
 
       <div className="relative">
@@ -55,15 +45,12 @@ export function RowScroller({
           type="button"
           aria-label="向左滚动"
           onClick={() => scroll(-1)}
-          className="row-arrow absolute left-1 sm:left-3 top-1/2 -translate-y-1/2 z-40 w-10 h-10 rounded-full bg-black/70 border border-white/10 text-white grid place-items-center p-2.5 backdrop-blur-md"
+          className="row-arrow absolute top-1/2 left-1 z-40 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-black/70 p-2.5 text-white backdrop-blur-md sm:left-3"
         >
           <ChevronLeftIcon />
         </button>
 
-        <div
-          ref={scrollerRef}
-          className="no-scrollbar flex gap-3 overflow-x-auto scroll-smooth px-4 sm:px-8 lg:px-12 py-5 -my-5"
-        >
+        <div ref={scrollerRef} className="-my-5 no-scrollbar flex gap-3 overflow-x-auto scroll-smooth px-4 py-5 sm:px-8 lg:px-12">
           {notes.map((n, i) => (
             <NoteCard key={n.path} note={n} idx={i + offset} base={base} />
           ))}
@@ -73,7 +60,7 @@ export function RowScroller({
           type="button"
           aria-label="向右滚动"
           onClick={() => scroll(1)}
-          className="row-arrow absolute right-1 sm:right-3 top-1/2 -translate-y-1/2 z-40 w-10 h-10 rounded-full bg-black/70 border border-white/10 text-white grid place-items-center p-2.5 backdrop-blur-md"
+          className="row-arrow absolute top-1/2 right-1 z-40 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-black/70 p-2.5 text-white backdrop-blur-md sm:right-3"
         >
           <ChevronRightIcon />
         </button>

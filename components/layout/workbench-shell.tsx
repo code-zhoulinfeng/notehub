@@ -3,18 +3,11 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import type { ReactNode } from "react";
-import {
-  EyeIcon,
-  FileIcon,
-  HomeIcon,
-  LogoIcon,
-  LogoutIcon,
-  SettingsIcon,
-} from "@/components/icons";
+import { EyeIcon, FileIcon, HomeIcon, LogoIcon, LogoutIcon, SettingsIcon } from "@/components/icons";
 import { Avatar } from "@/features/user/components/avatar";
 import { toast } from "@/lib/toast";
 import { NOTES, REPO, USER } from "@/lib/mock/data";
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
 const NAV = [
   { id: "dash", label: "工作台", href: "/app", icon: HomeIcon },
@@ -42,11 +35,7 @@ function headerTitle(pathname: string): string {
 
 /** 编辑器页是否为全屏（不带侧栏 chrome） */
 function isEditorFullscreen(pathname: string): boolean {
-  return (
-    /^\/app\/notes\/.+/.test(pathname) &&
-    !pathname.endsWith("/history") &&
-    !pathname.endsWith("/compare")
-  );
+  return /^\/app\/notes\/.+/.test(pathname) && !pathname.endsWith("/history") && !pathname.endsWith("/compare");
 }
 
 /**
@@ -66,21 +55,18 @@ export function WorkbenchShell({ children }: { children: ReactNode }) {
   const active = activeNav(pathname);
 
   return (
-    <div className="min-h-screen flex bg-ink-950">
+    <div className="flex min-h-screen bg-ink-950">
       {/* 侧边栏 */}
-      <aside className="hidden lg:flex w-[240px] shrink-0 flex-col border-r border-ink-700/60 bg-ink-900/40 sticky top-0 h-screen">
-        <Link
-          href="/app"
-          className="h-16 flex items-center gap-2.5 px-5 border-b border-ink-700/50 hover:bg-white/[0.02] transition"
-        >
-          <div className="w-8 h-8 rounded-lg bg-accent grid place-items-center text-white">
-            <LogoIcon className="w-[18px] h-[18px]" />
+      <aside className="sticky top-0 hidden h-screen w-[240px] shrink-0 flex-col border-r border-ink-700/60 bg-ink-900/40 lg:flex">
+        <Link href="/app" className="flex h-16 items-center gap-2.5 border-b border-ink-700/50 px-5 transition hover:bg-white/[0.02]">
+          <div className="grid h-8 w-8 place-items-center rounded-lg bg-accent text-white">
+            <LogoIcon className="h-[18px] w-[18px]" />
           </div>
           <span className="font-semibold tracking-tight">NoteHub</span>
-          <span className="ml-auto text-[10px] font-mono text-ink-500 tracking-wider">OWNER</span>
+          <span className="ml-auto font-mono text-[10px] tracking-wider text-ink-500">OWNER</span>
         </Link>
 
-        <nav className="p-3 space-y-0.5">
+        <nav className="space-y-0.5 p-3">
           {NAV.map((n) => {
             const on = n.id === active;
             const Icon = n.icon;
@@ -89,67 +75,73 @@ export function WorkbenchShell({ children }: { children: ReactNode }) {
                 key={n.id}
                 href={n.href}
                 className={cn(
-                  "flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13.5px] transition-all",
-                  on
-                    ? "side-active"
-                    : "text-zinc-400 hover:text-zinc-100 hover:bg-white/[0.03]",
+                  "flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13.5px] transition-all",
+                  on ? "side-active" : "text-zinc-400 hover:bg-white/[0.03] hover:text-zinc-100",
                 )}
               >
-                <Icon className={cn("w-[18px] h-[18px]", on ? "text-accent-400" : "text-ink-300")} />
+                <Icon className={cn("h-[18px] w-[18px] text-ink-300", { "text-accent-400": on })} />
                 <span className={on ? "font-medium" : ""}>{n.label}</span>
-                <span className="side-dot ml-auto w-1.5 h-1.5 rounded-full bg-accent opacity-0 transition-opacity" />
+                <span className="side-dot ml-auto h-1.5 w-1.5 rounded-full bg-accent opacity-0 transition-opacity" />
               </Link>
             );
           })}
         </nav>
 
-        <div className="px-4 py-4 mt-2">
-          <div className="text-[10px] tracking-[0.16em] text-ink-500 uppercase mb-3 px-1">概览</div>
+        <div className="mt-2 px-4 py-4">
+          <div className="mb-3 px-1 text-[10px] tracking-[0.16em] text-ink-500 uppercase">概览</div>
           <div className="space-y-2">
-            <div className="flex items-center justify-between px-3 py-2 rounded-lg bg-white/[0.02] text-[12.5px]">
+            <div className="flex items-center justify-between rounded-lg bg-white/[0.02] px-3 py-2 text-[12.5px]">
               <span className="text-ink-300">全部笔记</span>
-              <span className="text-white font-mono">{NOTES.length}</span>
+              <span className="font-mono text-white">{NOTES.length}</span>
             </div>
-            <div className="flex items-center justify-between px-3 py-2 rounded-lg bg-white/[0.02] text-[12.5px]">
-              <span className="text-ink-300 flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-mint" />
+            <div className="flex items-center justify-between rounded-lg bg-white/[0.02] px-3 py-2 text-[12.5px]">
+              <span className="flex items-center gap-1.5 text-ink-300">
+                <span className="h-2 w-2 rounded-full bg-mint" />
                 已公开
               </span>
-              <span className="text-white font-mono">{pub}</span>
+              <span className="font-mono text-white">{pub}</span>
             </div>
-            <div className="flex items-center justify-between px-3 py-2 rounded-lg bg-white/[0.02] text-[12.5px]">
-              <span className="text-ink-300 flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-ink-500" />
+            <div className="flex items-center justify-between rounded-lg bg-white/[0.02] px-3 py-2 text-[12.5px]">
+              <span className="flex items-center gap-1.5 text-ink-300">
+                <span className="h-2 w-2 rounded-full bg-ink-500" />
                 私密
               </span>
-              <span className="text-white font-mono">{priv}</span>
+              <span className="font-mono text-white">{priv}</span>
             </div>
             {dirty ? (
-              <div className="flex items-center justify-between px-3 py-2 rounded-lg bg-amber/10 border border-amber/25 text-[12.5px]">
-                <span className="text-amber flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-amber" />
+              <div className="flex items-center justify-between rounded-lg border border-amber/25 bg-amber/10 px-3 py-2 text-[12.5px]">
+                <span className="flex items-center gap-1.5 text-amber">
+                  <span className="h-2 w-2 rounded-full bg-amber" />
                   待提交
                 </span>
-                <span className="text-amber font-mono font-semibold">{dirty}</span>
+                <span className="font-mono font-semibold text-amber">{dirty}</span>
               </div>
             ) : null}
           </div>
         </div>
 
-        <div className="px-4 mt-2">
-          <div className="text-[10px] tracking-[0.16em] text-ink-500 uppercase mb-3 px-1">仓库</div>
+        <div className="mt-2 px-4">
+          <div className="mb-3 px-1 text-[10px] tracking-[0.16em] text-ink-500 uppercase">仓库</div>
           <Link
             href="/app/settings"
-            className="block px-3 py-2.5 rounded-lg border border-ink-700/60 bg-white/[0.02] hover:bg-white/[0.04] transition"
+            className="block rounded-lg border border-ink-700/60 bg-white/[0.02] px-3 py-2.5 transition hover:bg-white/[0.04]"
           >
             <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-mint" />
-              <span className="text-[12.5px] text-zinc-300 font-mono truncate">
+              <span className="h-1.5 w-1.5 rounded-full bg-mint" />
+              <span className="truncate font-mono text-[12.5px] text-zinc-300">
                 {REPO.owner}/{REPO.repo}
               </span>
             </div>
-            <div className="mt-1.5 flex items-center gap-1.5 text-[11px] text-ink-400 font-mono">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3">
+            <div className="mt-1.5 flex items-center gap-1.5 font-mono text-[11px] text-ink-400">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.9"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-3 w-3"
+              >
                 <circle cx="7" cy="6" r="2.4" />
                 <circle cx="7" cy="18" r="2.4" />
                 <circle cx="17" cy="12" r="2.4" />
@@ -162,12 +154,12 @@ export function WorkbenchShell({ children }: { children: ReactNode }) {
           </Link>
         </div>
 
-        <div className="mt-auto p-3 border-t border-ink-700/50">
-          <div className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-white/[0.03] transition group">
+        <div className="mt-auto border-t border-ink-700/50 p-3">
+          <div className="group flex items-center gap-3 rounded-lg px-2 py-2 transition hover:bg-white/[0.03]">
             <Avatar size={30} />
             <div className="min-w-0 flex-1">
-              <div className="text-[12.5px] text-white truncate">{USER.name}</div>
-              <div className="text-[10.5px] text-ink-400 truncate font-mono">@{USER.username}</div>
+              <div className="truncate text-[12.5px] text-white">{USER.name}</div>
+              <div className="truncate font-mono text-[10.5px] text-ink-400">@{USER.username}</div>
             </div>
             <button
               type="button"
@@ -176,36 +168,36 @@ export function WorkbenchShell({ children }: { children: ReactNode }) {
                 toast("已退出登录");
                 router.push("/");
               }}
-              className="w-4 h-4 text-ink-500 hover:text-accent-400 transition opacity-0 group-hover:opacity-100"
+              className="h-4 w-4 text-ink-500 opacity-0 transition group-hover:opacity-100 hover:text-accent-400"
             >
-              <LogoutIcon className="w-full h-full" />
+              <LogoutIcon className="h-full w-full" />
             </button>
           </div>
         </div>
       </aside>
 
       {/* 主区 */}
-      <div className="flex-1 min-w-0 flex flex-col">
-        <header className="h-16 shrink-0 border-b border-ink-700/60 bg-ink-950/90 backdrop-blur-xl sticky top-0 z-30 flex items-center gap-4 px-5 lg:px-8">
+      <div className="flex min-w-0 flex-1 flex-col">
+        <header className="sticky top-0 z-30 flex h-16 shrink-0 items-center gap-4 border-b border-ink-700/60 bg-ink-950/90 px-5 backdrop-blur-xl lg:px-8">
           <h1 className="text-[15px] font-medium text-white">{headerTitle(pathname)}</h1>
 
           <div className="ml-auto flex items-center gap-2.5">
-            <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg border border-ink-700/60 bg-white/[0.025] text-[11.5px] text-ink-400 font-mono">
-              <span className="w-1.5 h-1.5 rounded-full bg-mint" />
+            <div className="hidden items-center gap-2 rounded-lg border border-ink-700/60 bg-white/[0.025] px-3 py-1.5 font-mono text-[11.5px] text-ink-400 md:flex">
+              <span className="h-1.5 w-1.5 rounded-full bg-mint" />
               <span className="text-zinc-400">同步正常</span>
             </div>
             <Link
               href={`/${USER.username}`}
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-ink-700/60 text-[12px] text-ink-300 hover:text-white hover:bg-white/[0.04] transition"
+              className="hidden items-center gap-1.5 rounded-lg border border-ink-700/60 px-3 py-1.5 text-[12px] text-ink-300 transition hover:bg-white/[0.04] hover:text-white sm:flex"
             >
-              <EyeIcon className="w-3.5 h-3.5" />
+              <EyeIcon className="h-3.5 w-3.5" />
               <span>以访客身份查看</span>
             </Link>
             <Avatar size={30} className="ring-1 ring-white/10" />
           </div>
         </header>
 
-        <main className="flex-1 min-w-0">{children}</main>
+        <main className="min-w-0 flex-1">{children}</main>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@
 
 import type { ButtonHTMLAttributes } from "react";
 import { toast } from "@/lib/toast";
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
 interface ToastButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** toast 文案；不传则点击无提示 */
